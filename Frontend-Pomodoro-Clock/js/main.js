@@ -11,6 +11,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
   $scope.currInterval;
   $scope.started = false;
   $scope.paused = false;
+	$scope.pointer = 0;
   
   // Session-Object
   $scope.sess = {};
@@ -54,15 +55,19 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
   /* watching sess.duration:
      when it changes, automatically update:
      - remaining time
-     - minutes */
+     - minutes
+		 - pointer */
   $scope.$watch("sess.duration", function () {
     $scope.sess.remaining = $scope.sess.duration * 60 - $scope.sess.elapsed;
     $scope.sess.minutes = Math.floor($scope.sess.remaining / 60);
+		if ($scope.mode === "sess") {
+			$scope.updatePointer();
+		}
   });
 
   /* watching sess.elapsed:
      - sess.elapsed changes after each interval,
-     - sess.remaining, sess.minutes and sess.secons get updated automatically
+     - sess.remaining, sess.minutes and sess.seconds and sess.pointer get updated automatically
      - minutes decrease by 1 every time when there is one second elapsed, ie. switching from :00 to :59
      - at 0:00, session-interval is stopped, and switch to break-interval takes place */
   $scope.$watch("sess.elapsed", function () {
@@ -76,8 +81,9 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
         $scope.start();
         console.log("breaktime");
       }
-    }
-    $scope.sess.seconds = $scope.sess.remaining % 60;
+    } 
+			$scope.updatePointer();
+			$scope.sess.seconds = $scope.sess.remaining % 60;
   });
 
   /* watching brk.duration:
@@ -85,6 +91,9 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
   $scope.$watch("brk.duration", function () {
     $scope.brk.remaining = $scope.brk.duration * 60 - $scope.brk.elapsed;
     $scope.brk.minutes = Math.floor($scope.brk.remaining / 60);
+		if ($scope.mode === "brk") {
+			$scope.updatePointer();
+		}
   });
 
   /* watching brk.elapsed:
@@ -102,6 +111,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
       }
     }
     $scope.brk.seconds = $scope.brk.remaining % 60;
+		$scope.updatePointer();
   });  
   
   /************************************************************************
@@ -124,7 +134,21 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
       $scope[sessionOrBreak].duration--;
     }
   };
-
+	
+	/* updatePointer function
+		 - updates pointer variable which is binded to #pointer
+		 - in sess-mode direction is forward
+		 - in brk-mode direction is backward
+		 - gets called by both of sess and brk's watch-functions */
+	$scope.updatePointer = function() {
+		if ($scope.mode === "sess") {
+			$scope.pointer = (($scope.sess.elapsed * 360) / ($scope.sess.duration * 60));
+		}
+		else {
+			$scope.pointer = (($scope.brk.elapsed * -360) / ($scope.brk.duration * 60));
+		}
+	}
+	
   /* universal start function
      - works for starting both sess- and brk-time, based on $scope.mode
      - new interval is created (the old one gets canceled in the respective watch section)
