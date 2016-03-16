@@ -40,7 +40,7 @@
   <div id="clock" class="row">
 		<div id="session" ng-if="mode === 'sess'" class="col col-xs-12">Session<br>{{sess.minutes | number: 0}}:{{sess.seconds * 1000 | date: 'ss'}}</div>
 		<div id="break" ng-if="mode === 'brk'" class="col col-xs-12">Break<br>{{brk.minutes | number: 0}}:{{brk.seconds * 1000 | date: 'ss'}}</div>
-		<div id="container" style="transform:rotate({{pointer}}deg)">
+		<div id="container">
 			<div id="circle"></div>
 			<div id="pointer"></div>
 		</div>

@@ -11,7 +11,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
   $scope.currInterval;
   $scope.started = false;
   $scope.paused = false;
-	$scope.pointer = 0;
+	$scope.transformSupport;
   
   // Session-Object
   $scope.sess = {};
@@ -30,7 +30,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
   $scope.brk.remaining = $scope.brk.duration * 60 - $scope.brk.elapsed;
   $scope.brk.minutes = $scope.brk.remaining / 60;
   $scope.brk.seconds = $scope.brk.remaining % 60;
-  
+	
  /************************************************************************
     INDIVIDUAL WATCH FUNCTIONS FOR DATA BINDING
   *************************************************************************
@@ -142,13 +142,13 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
 		 - gets called by both of sess and brk's watch-functions */
 	$scope.updatePointer = function() {
 		if ($scope.mode === "sess") {
-			$scope.pointer = (($scope.sess.elapsed * 360) / ($scope.sess.duration * 60));
+			document.getElementById("container").style[$scope.transformSupport] = "rotate(" + (($scope.sess.elapsed * 360) / ($scope.sess.duration * 60)) + "deg)";
 		}
 		else {
-			$scope.pointer = (($scope.brk.elapsed * -360) / ($scope.brk.duration * 60));
+			document.getElementById("container").style[$scope.transformSupport] = "rotate(" + (($scope.brk.elapsed * -360) / ($scope.brk.duration * 60)) + "deg)";
 		}
 	}
-	
+
   /* universal start function
      - works for starting both sess- and brk-time, based on $scope.mode
      - new interval is created (the old one gets canceled in the respective watch section)
@@ -200,5 +200,37 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
     $scope.brk.minutes = $scope.brk.duration;
     $scope.mode = "sess";
   };
-  
+	
+  /************************************************************************
+    CROSS-BROWSER OPTIMIZATION
+  *************************************************************************
+    cross-croswer problematic parts are:
+		- pointer relies on transform property
+  ************************************************************************/
+		
+	/* handleTransformSupport function
+			 - tests support of transform property
+			 - returns regular or respective vendor prefixed property if supported
+			 - returns empty string if not supported
+			 - if no support is available:
+			   - pointer is hidden
+				 - updatePointer function gets overwritten with empty function
+			 - as testing for style properties with style[property]-syntax is not fully
+			   supported by all browsers, the testing is hardcoded */
+	$scope.handleTransformSupport = function () {
+		var div = document.createElement("div");
+		if (div.style.transform !== undefined) { $scope.transformSupport = "transform"; }
+		if (div.style.msTransform !== undefined) { $scope.transformSupport = "msTransform"; }
+		if (div.style.MozTransform !== undefined) { $scope.transformSupport = "MozTransform"; }
+		if (div.style.OTransform !== undefined) { $scope.transformSupport = "OTransform"; }
+		if (div.style.webkitTransform !== undefined) { $scope.transformSupport = "webkitTransform"; }
+		if (div.style.WebkitTransform !== undefined) { $scope.transformSupport = "WebkitTransform"; }
+		if ($scope.transformSupport === "") {
+			document.getElementById("pointer").style.display = "none";
+			$scope.updatePointer = function () {};
+		}
+	}
+	
+	$scope.handleTransformSupport();
+
 }]);
