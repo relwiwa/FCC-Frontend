@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+	
+	<title>Pomodoro Clock - FreeCodeCamp Frontend Certification</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	
+	<script src="js/main.js"></script>
+	<link rel="stylesheet" href="css/main.css">
+	
+</head>
+	
+<body>
+
+<div class="container text-center" ng-app="myClock" ng-controller="ClockController">
+  
+  <h1>Pomodoro Clock</h1>
+
+  <div class="row">
+    <div class="col col-xs-6">
+      <h4>Session</h4>
+      <button ng-click="changeDuration('-', 'sess')">-</button>
+      <span ng-bind="sess.duration"></span>
+      <button ng-click="changeDuration('+', 'sess')">+</button>
+    </div>
+    <div class="col col-xs-6">
+      <h4>Break</h4>
+      <button ng-click="changeDuration('-', 'brk')">-</button>
+      <span ng-bind="brk.duration"></span>
+      <button ng-click="changeDuration('+', 'brk')">+</button>      
+    </div>
+  </div>
+  
+  <div id="timer" class="row">
+    <div id="clock" ng-if="mode === 'sess'" class="col col-xs-12">{{sess.minutes | number: 0}}:{{sess.seconds * 1000 | date: 'ss'}}</div>
+    <div ng-if="mode === 'brk'" class="col col-xs-12">{{brk.minutes | number: 0}}:{{brk.seconds * 1000 | date: 'ss'}}</div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col col-xs-12">
+      <button ng-show="!started" ng-click="start();">start</button>
+      <button ng-show="started" ng-click="reset();">reset</button>
+      <button ng-show="started && !paused" ng-click="pause();">pause</button>
+      <button ng-show="started && paused" ng-click="advance();">continue</button>
+    </div>
+  </div>
+ 
+</div>
+
+
+</body>	
+
+</html>
