@@ -18,45 +18,54 @@
 	
 <body>
 
-<div class="container text-center" ng-app="myClock" ng-controller="ClockController">
-  
-  <h1>Pomodoro Clock</h1>
+<!--<body class="{{mode}}" ng-app="myClock" ng-controller="ClockController">-->
+<div id="wrapper" ng-app="myClock" ng-controller="ClockController">
 
-  <div class="row">
-    <div class="col col-xs-6">
-      <h4>Session</h4>
-      <button ng-click="changeDuration('-', 'sess')">-</button>
-      <span ng-bind="sess.duration"></span>
-      <button ng-click="changeDuration('+', 'sess')">+</button>
-    </div>
-    <div class="col col-xs-6">
-      <h4>Break</h4>
-      <button ng-click="changeDuration('-', 'brk')">-</button>
-      <span ng-bind="brk.duration"></span>
-      <button ng-click="changeDuration('+', 'brk')">+</button>      
-    </div>
-  </div>
-  
-  <div id="clock" class="row">
-		<div id="session" ng-if="mode === 'sess'" class="col col-xs-12">Session<br>{{sess.minutes | number: 0}}:{{sess.seconds * 1000 | date: 'ss'}}</div>
-		<div id="break" ng-if="mode === 'brk'" class="col col-xs-12">Break<br>{{brk.minutes | number: 0}}:{{brk.seconds * 1000 | date: 'ss'}}</div>
-		<div id="container">
-			<div id="circle"></div>
-			<div id="pointer"></div>
-		</div>
-  </div>
-  
-  <div class="row">
-    <div class="col col-xs-12">
-      <button ng-show="!started" ng-click="start();">start</button>
-      <button ng-show="started" ng-click="reset();">reset</button>
-      <button ng-show="started && !paused" ng-click="pause();">pause</button>
-      <button ng-show="started && paused" ng-click="advance();">continue</button>
-    </div>
-  </div>
- 
-</div>
+	<h1 class="text-center">Pomodoro Clock</h1>
 
+  <div class="container text-center">
+
+    <div id="settings" class="row">
+      
+      <div class="col col-xs-6 col-sm-4 col-sm-offset-2">
+        <h4>Session</h4>
+        <button class="glyphicon glyphicon-minus" ng-click="changeDuration('-', 'sess')"></button>
+        <span ng-bind="sess.duration"></span>
+        <button class="glyphicon glyphicon-plus" ng-click="changeDuration('+', 'sess')"></button>
+      </div>
+      
+      <div class="col col-xs-6 col-sm-4">
+        <h4>Break</h4>
+        <button class="glyphicon glyphicon-minus" ng-click="changeDuration('-', 'brk')"></button>
+        <span ng-bind="brk.duration"></span>
+        <button class="glyphicon glyphicon-plus" ng-click="changeDuration('+', 'brk')"></button>      
+      </div>
+
+    <!-- /#settings --></div>
+
+    <div id="controls" class="row">
+      <div class="col col-xs-12">
+        <button class="glyphicon glyphicon-play" ng-show="!started" ng-click="start();"></button>
+        <button class="glyphicon glyphicon-pause" ng-show="started && !paused" ng-click="pause();"></button>
+        <button class="glyphicon glyphicon-play" ng-show="started && paused" ng-click="advance();"></button>
+        <button class="	glyphicon glyphicon-stop" ng-show="started" ng-click="reset();"></button>
+      </div>
+    <!-- /#controls --></div>  
+
+    <div id="clock" class="row">
+      <div id="session" ng-if="mode === 'sess'" class="col col-xs-12">Session<br>{{sess.minutes | number: 0}}:{{sess.seconds * 1000 | date: 'ss'}}</div>
+      <div id="break" ng-if="mode === 'brk'" class="col col-xs-12">Break<br>{{brk.minutes | number: 0}}:{{brk.seconds * 1000 | date: 'ss'}}</div>
+      <div id="container">
+        <div id="circle"></div>
+        <div id="pointer"></div>
+      </div>
+    <!-- /#clock --></div>
+
+  <!-- /.container --></div>
+
+<!-- /#wrapper --></div>
+
+<!--</body>-->
 
 </body>	
 

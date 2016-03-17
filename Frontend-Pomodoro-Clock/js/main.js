@@ -69,7 +69,10 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
      - sess.elapsed changes after each interval,
      - sess.remaining, sess.minutes and sess.seconds and sess.pointer get updated automatically
      - minutes decrease by 1 every time when there is one second elapsed, ie. switching from :00 to :59
-     - at 0:00, session-interval is stopped, and switch to break-interval takes place */
+     - at 0:00, session-interval is stopped, and switch to break-interval takes place:
+       - mode becomes brk
+       - body-class gets changed manually, due to codepen restricting ability to add classes
+         to body element; otherwise it would be possible to add class={{mode}} to body-tag */
   $scope.$watch("sess.elapsed", function () {
     $scope.sess.remaining = $scope.sess.duration * 60 - $scope.sess.elapsed;
     if ($scope.sess.elapsed % 60 === 1) {
@@ -77,6 +80,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
         $scope.sess.minutes--;
       } else {
         $scope.mode = "brk";
+        document.body.className = "brk";
         $interval.cancel($scope.currInterval);
         $scope.start();
         console.log("breaktime");
@@ -105,6 +109,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
         $scope.brk.minutes--;
       } else {
         $scope.mode = "sess";
+        document.body.className = "sess";
         $interval.cancel($scope.currInterval);
         $scope.start();
         console.log("sessiontime");
@@ -232,5 +237,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
 	}
 	
 	$scope.handleTransformSupport();
+  document.body.className = "sess";
+
 
 }]);

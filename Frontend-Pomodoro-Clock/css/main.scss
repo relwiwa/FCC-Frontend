@@ -1,0 +1,137 @@
+// SCSS Variables
+
+$colorComplimentaryA:#ffa500;
+$colorComplimentaryB:#3798B5;
+$colorNeutral:#ffffff;
+
+
+/********************************
+ Styles for sess/brk transition
+********************************/
+
+body.sess {
+  color:$colorNeutral;
+  background:$colorComplimentaryB;
+  
+  #circle {
+    background:$colorComplimentaryA;
+  }
+  
+  #pointer {
+    border-bottom-color:$colorComplimentaryA;
+  }
+  
+  button {
+    background:$colorComplimentaryA;
+  }
+
+/* TO BE DONE:
+	Not working on touch devices,  */
+/*  button:hover {
+    background:$colorNeutral;
+    border-color:$colorComplimentaryA;
+    color:$colorComplimentaryA;
+  }*/
+
+}
+
+body.brk {
+  color:$colorNeutral;
+  background:$colorComplimentaryA;
+  
+  #circle {
+    background:$colorComplimentaryB;
+  }
+  
+  #pointer {
+    border-bottom-color:$colorComplimentaryB;
+  }
+  
+  button {
+    background:$colorComplimentaryB;
+  }
+  
+/* TO BE DONE:
+	Not working on touch devices,  */
+/*  button:hover {
+    background:$colorNeutral;
+    border-color:$colorComplimentaryB;
+    color:$colorComplimentaryB;
+  }*/
+}
+
+/********************************
+ General Styles
+********************************/
+
+h1 {
+  margin:0 0 10px 0;
+  padding:15px 0;
+  background:$colorNeutral;
+  color:$colorComplimentaryB;
+}
+
+button {
+  padding:15px;
+  border-radius:50%;
+  min-width:40px;
+  min-height:40px;
+  border:2px solid $colorNeutral;
+}
+
+#controls {
+  margin:15px 0 0 0;
+}
+
+span {
+  padding:10px;
+}
+
+/********************************
+ Styles for Clock
+********************************/
+
+#clock {
+  z-index:5;
+	position:relative;
+	width:250px;
+	height:250px;
+	margin:25px auto;
+  border-radius:50%;
+  border:25px $colorNeutral solid;
+}
+
+#session, #break {
+	position:absolute;
+	top:35%;
+	left:0;
+	z-index:17;
+	font-size:26px;
+}
+
+#container {
+	width:100%;
+	height:100%;
+	position:relative;
+}
+
+#circle {
+	position:relative;
+	width:100%;
+	height:100%;
+	border-radius:50%;
+	z-index:16;
+}
+
+#pointer {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 165px solid;
+	position:absolute;
+	top:-25px;
+	left:72.5px;
+	margin:0 auto;
+	z-index:15;
+}
