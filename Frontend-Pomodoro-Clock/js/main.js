@@ -192,7 +192,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
   /* reset-function
      - current interval is stopped
      - sess- and brk-variables get reset to default values
-     - switching to sess-mode
+     - switching to sess-mode and updating body class
      - started and stopped are set to false */
   $scope.reset = function () {
     $scope.started = false;
@@ -205,6 +205,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
     $scope.brk.elapsed = 0;
     $scope.brk.minutes = $scope.brk.duration;
     $scope.mode = "sess";
+    document.body.className = "sess";
   };
 	
   /************************************************************************
@@ -216,13 +217,12 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
 		
 	/* handleTransformSupport function
 			 - tests support of transform property
-			 - returns regular or respective vendor prefixed property if supported
-			 - returns empty string if not supported
+			 - sets transformSupport variable to regular or respective vendor prefixed property 
 			 - if no support is available:
 			   - pointer is hidden
 				 - updatePointer function gets overwritten with empty function
 			 - as testing for style properties with style[property]-syntax is not fully
-			   supported by all browsers, the testing is hardcoded */
+			   supported by all browsers, the testing for each vendor is hardcoded */
 	$scope.handleTransformSupport = function () {
 		var div = document.createElement("div");
 		if (div.style.transform !== undefined) { $scope.transformSupport = "transform"; }
