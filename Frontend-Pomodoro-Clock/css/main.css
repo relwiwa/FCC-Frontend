@@ -69,6 +69,15 @@ span {
   padding: 10px;
 }
 
+a, a:hover, a:active, a:link, a:visited {
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+
+#credits {
+  margin-top: 75px;
+}
+
 /********************************
  Styles for Clock
 ********************************/
