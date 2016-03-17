@@ -135,7 +135,7 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
     if (operation === "+") {
       $scope[sessionOrBreak].duration++;
     }
-    if (operation === "-" && $scope[sessionOrBreak].duration > 1) {
+    if (operation === "-" && $scope[sessionOrBreak].duration * 60 - 60 > $scope[sessionOrBreak].elapsed) {
       $scope[sessionOrBreak].duration--;
     }
   };
@@ -161,7 +161,8 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
      - elapsed and minutes are being reset, no need to reset seconds or duration */
   $scope.start = function () {
     $scope.started = true;
-    $scope[$scope.mode].elapsed = 0;
+    $scope["sess"].elapsed = 0;
+		$scope["brk"].elapsed = 0;
     $scope[$scope.mode].minutes = $scope[$scope.mode].duration;
     $scope.currInterval = $interval(function () {
       $scope[$scope.mode].elapsed++;
