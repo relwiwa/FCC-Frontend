@@ -29,16 +29,16 @@
       
       <div class="col col-xs-6 col-sm-4 col-sm-offset-2">
         <h4>Session</h4>
-        <button class="glyphicon glyphicon-minus" ng-click="changeDuration('-', 'sess')"></button>
-        <span ng-bind="sess.duration"></span>
         <button class="glyphicon glyphicon-plus" ng-click="changeDuration('+', 'sess')"></button>
+        <span ng-bind="sess.duration"></span>
+        <button class="glyphicon glyphicon-minus" ng-click="changeDuration('-', 'sess')"></button>
       </div>
       
       <div class="col col-xs-6 col-sm-4">
         <h4>Break</h4>
-        <button class="glyphicon glyphicon-minus" ng-click="changeDuration('-', 'brk')"></button>
-        <span ng-bind="brk.duration"></span>
         <button class="glyphicon glyphicon-plus" ng-click="changeDuration('+', 'brk')"></button>      
+        <span ng-bind="brk.duration"></span>
+        <button class="glyphicon glyphicon-minus" ng-click="changeDuration('-', 'brk')"></button>
       </div>
 
     <!-- /#settings --></div>

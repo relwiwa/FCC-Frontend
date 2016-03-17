@@ -54,7 +54,7 @@ h1 {
 }
 
 button {
-  padding: 15px;
+  padding: 10px;
   border-radius: 50%;
   min-width: 40px;
   min-height: 40px;
@@ -62,11 +62,12 @@ button {
 }
 
 #controls {
-  margin: 15px 0 0 0;
+  margin: 10px 0 0 0;
 }
 
 span {
-  padding: 10px;
+  display: block;
+  padding: 5px;
 }
 
 a, a:hover, a:active, a:link, a:visited {
@@ -84,16 +85,16 @@ a, a:hover, a:active, a:link, a:visited {
 #clock {
   z-index: 5;
   position: relative;
-  width: 250px;
-  height: 250px;
-  margin: 25px auto;
+  width: 200px;
+  height: 200px;
+  margin: 15px auto;
   border-radius: 50%;
-  border: 25px #ffffff solid;
+  border: 15px #ffffff solid;
 }
 
 #session, #break {
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 0;
   z-index: 17;
   font-size: 26px;
@@ -118,12 +119,49 @@ a, a:hover, a:active, a:link, a:visited {
   height: 0;
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
-  border-bottom: 165px solid;
+  border-bottom: 125px solid;
   position: absolute;
-  top: -25px;
-  left: 72.5px;
+  top: -15px;
+  left: 60.5px;
   margin: 0 auto;
   z-index: 15;
+}
+
+/**********************************
+   Media Queries
+ *********************************/
+@media screen and (min-width: 400px) {
+  button {
+    padding: 15px;
+  }
+
+  #controls {
+    margin: 15px 0 0 0;
+  }
+
+  span {
+    display: inline;
+    padding: 10px;
+  }
+
+  #clock {
+    width: 250px;
+    height: 250px;
+    border: 25px #ffffff solid;
+    margin: 25px auto;
+  }
+
+  #session, #break {
+    top: 35%;
+  }
+
+  #pointer {
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 165px solid;
+    top: -25px;
+    left: 72.5px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
