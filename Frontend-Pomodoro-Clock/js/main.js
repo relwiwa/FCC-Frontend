@@ -71,7 +71,6 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
      - minutes decrease by 1 every time when there is one second elapsed, ie. switching from :00 to :59
      - at 0:00, session-interval is stopped, and switch to break-interval takes place:
        - mode becomes brk
-			 - audio file is played (not on mobile devices due to usability restrictions of mobile devices)
        - body-class gets changed manually, due to codepen restricting ability to add classes
          to body element; otherwise it would be possible to add class={{mode}} to body-tag */
   $scope.$watch("sess.elapsed", function () {
@@ -82,7 +81,6 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
       } else {
         $scope.mode = "brk";
         document.body.className = "brk";
-				document.getElementById("audio").play();
         $interval.cancel($scope.currInterval);
         $scope.start();
         console.log("breaktime");
@@ -112,7 +110,6 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
       } else {
         $scope.mode = "sess";
         document.body.className = "sess";
-				document.getElementById("audio").play();
         $interval.cancel($scope.currInterval);
         $scope.start();
         console.log("sessiontime");
@@ -161,11 +158,18 @@ myClock.controller("ClockController", ["$scope", "$interval", function ($scope, 
      - works for starting both sess- and brk-time, based on $scope.mode
      - new interval is created (the old one gets canceled in the respective watch section)
      - started is set to true
+		 - audio file is played at the beginning and when switching between modes:
+		   as audio file playback is now linked to user clicking the start button in order
+			 to start the clock, audio playback now also works on mobile devices (where playback
+			 without user interaction is restricted). As it's just a regular gong sound,
+			 ignoring these restrictions seems justified for the benefit of a better user
+			 experience.
      - elapsed and minutes are being reset, no need to reset seconds or duration */
   $scope.start = function () {
     $scope.started = true;
     $scope["sess"].elapsed = 0;
 		$scope["brk"].elapsed = 0;
+		document.getElementById("audio").play();
     $scope[$scope.mode].minutes = $scope[$scope.mode].duration;
     $scope.currInterval = $interval(function () {
       $scope[$scope.mode].elapsed++;
