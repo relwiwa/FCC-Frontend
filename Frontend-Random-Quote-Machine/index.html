@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+	<title>Random Quote Machine | FreeCodeCamp's Frontend Certification</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	
+	<!-- Webfonts, Font Awesome-->
+	<link href="https://fonts.googleapis.com/css?family=Special+Elite|Francois+One" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	<!-- Stylesheets -->
+	<link href="styles/styles.css" rel="stylesheet" type="text/css">
+	
+	<!-- Scripts, incl. Twitter plugin -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<script src="js/app.js"></script>
+
+</head>
+
+<body>
+	
+<div class="container">
+	<div id="heading">Random Quote Machine</div>
+	<div id="main">
+		<div id="content">
+			<div id="quote"></div>
+			<div id="author"></div>
+		</div>
+	</div>
+	<div id="navigation">
+		<button title="Get Next Random Quote" id="nextQuote" class="fa fa-refresh"></button>
+		<a title="Tweet" target="new" href="https://twitter.com/intent/tweet" id="twitter" class="fa fa-twitter"></a>
+	</div>
+</div>
+
+<div id="sources">
+	Quotes are from <a href="http://www.quotesondesign.com">quotesondesign.com</a>'s <a href="http://www.quotesondesign.com/api-v4-0/">API</a>
+</div>
+
+</body>
+
+</html>

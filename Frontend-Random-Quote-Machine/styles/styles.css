@@ -1,0 +1,79 @@
+body {
+  padding: 0 10px;
+  /* Background pattern from subtlepatterns.com */
+  background: url(http://res.cloudinary.com/dqzrtsqol/image/upload/v1456144585/grey_wash_wall_klslwm.png); }
+
+.container {
+  margin: 10px auto; }
+
+#heading {
+  text-align: center;
+  font-size: 2.5em;
+  color: #ffffff;
+  font-family: Francois One; }
+
+#main {
+  margin-top: 30px;
+  border-radius: 15px;
+  background: #ffffff;
+  font-size: 1.2em;
+  line-height: 1.6em;
+  border: 2px solid black; }
+
+#content {
+  opacity: 0; }
+
+#quote {
+  font-family: Francois One;
+  font-size: 1.2em;
+  padding: 10px 25px; }
+
+#author {
+  font-family: Special Elite, cursive;
+  text-align: right;
+  padding: 20px 35px; }
+
+#navigation {
+  margin-top: 20px;
+  text-align: center; }
+  #navigation button, #navigation a {
+    background: #fff;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    color: #000; }
+  #navigation #nextQuote {
+    font-size: 36px;
+    padding: 15px;
+    margin: 0 20px;
+    border-radius: 50%;
+    border: 2px solid black; }
+  #navigation #twitter, #navigation #facebook {
+    position: relative;
+    bottom: 6px;
+    padding: 10px;
+    font-size: 20px;
+    width: 20px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid black; }
+  #navigation button:hover, #navigation a:hover {
+    opacity: 0.8; }
+
+#sources {
+  margin-top: 50px;
+  text-align: center;
+  padding: 15px;
+  color: #fff;
+  font-size: 0.8em; }
+  #sources a {
+    color: #fff;
+    text-decoration: none; }
+  #sources a:hover {
+    text-decoration: underline; }
+
+@media screen and (min-width: 750px) {
+  .container {
+    max-width: 750px; } }
+
+/*# sourceMappingURL=styles.css.map */
