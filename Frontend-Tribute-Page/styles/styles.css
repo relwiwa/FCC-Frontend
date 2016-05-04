@@ -1,0 +1,75 @@
+body {
+  /* Background pattern from subtlepatterns.com */
+  background: url(http://res.cloudinary.com/dqzrtsqol/image/upload/v1455817045/contemporary_china_ozx48r.png); }
+
+#container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 1% 5% 5% 5%;
+  background: #cce6ff;
+  border-radius: 20px;
+  font-size: 1em;
+  box-shadow: 10px 10px 5px #000066;
+  border: 1px solid #000066;
+  font-family: "Mako", sans-serif; }
+
+#heading, #image, #about {
+  width: 100%; }
+
+a {
+  color: #000066; }
+
+a:hover {
+  font-weight: bold; }
+
+h1, h3 {
+  font-family: "Dosis", sans-serif; }
+
+/* heading */
+#heading {
+  text-align: center; }
+
+#image img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 0;
+  border: 5px solid white; }
+#image .subtext {
+  margin: 4px 10px;
+  font-size: 0.8em; }
+
+#about h3 {
+  margin-top: 35px;
+  margin-bottom: 30px;
+  text-align: center; }
+#about #flexbox {
+  display: flex;
+  flex-wrap: wrap; }
+#about #flexbox div {
+  background: #ffffff;
+  width: 100%;
+  border-radius: 10px;
+  margin: 10px 0px;
+  padding: 15px; }
+
+@media screen and (min-width: 600px) and (max-width: 960px) {
+  #container {
+    padding-bottom: 3%; }
+
+  #about #flexbox div {
+    width: 37%;
+    margin: 0 3%;
+    margin-bottom: 30px; } }
+@media screen and (min-width: 961px) {
+  #container {
+    font-size: 1.4em;
+    width: 830px;
+    margin: 20px auto;
+    padding-bottom: 2%; }
+
+  #about #flexbox div {
+    width: 40%;
+    margin: 0 3%;
+    margin-bottom: 50px; } }
+
+/*# sourceMappingURL=styles.css.map */
