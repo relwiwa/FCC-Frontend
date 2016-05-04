@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<title>Calculator - FreeCodeCamp Frontend Certification</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="js/app.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" type="text/css">
+	
+</head>
+
+<body>
+<h1>FreeCodeCamp Calculator</h1>
+<div id="calculator">
+  <div id="calcHead">
+    <input id="display" type="text" placeholder="Your calculation here" disabled>
+  </div>
+  <div id="calcBody">
+    <div class="calcRow">
+      <button class="clear">AC</button>
+      <button class="delete">CE</button>
+      <button class="operator">%</button>
+      <button class="operator">*</button>
+    </div>
+    <div class="calcRow">
+      <button class="digit">1</button>
+      <button class="digit">2</button>
+      <button class="digit">3</button>
+      <button class="operator">/</button>
+    </div>
+    <div class="calcRow">
+      <button class="digit">4</button>
+      <button class="digit">5</button>
+      <button class="digit">6</button>
+      <button class="operator">+</button>
+    </div>
+    <div class="calcRow">
+      <button class="digit">7</button>
+      <button class="digit">8</button>
+      <button class="digit">9</button>
+      <button class="minus">-</button>
+    </div>
+    <div class="calcRow">
+      <button class="dot">.</button>
+      <button class="digit zero">0</button>
+      <button class="result" id="resultBtn">=</button>
+    </div>
+  </div>
+<!-- /calculator --></div>
+
+<ul id="calc-history"></ul>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+$colorA: #000000;
+$colorB: blue;
+
+body {
+  /* Background pattern from subtlepatterns.com */
+  background:url(http://res.cloudinary.com/dqzrtsqol/image/upload/v1455183557/ignasi_pattern_s_yy4zmt.png);
+}
+
+
+h1 {
+  text-align:center;  
+  font-family:"Merienda One", cursive;
+  margin-bottom:50px;
+}
+
+#calculator {
+  border-radius:10px;
+  width:355px;
+  margin:0 auto;
+  background:gray;
+	border:1px solid $colorA;
+}
+
+
+#calcHead, #calcBody {
+  padding:10px;
+}
+
+#display {
+  padding:20px;
+  border-radius:5px;
+  font-weight:bold;
+  width:275px;
+  margin:10px;
+  text-align:right;
+	border:1px solid $colorA;
+}
+
+button {
+  padding:15px;
+  width:70px;
+  margin:5px;
+  font-weight:bold;
+  border-radius:10px;
+  border:1px solid $colorA;
+  outline:0;
+}
+
+button:hover, button:active {
+  border:1px solid $colorB;
+}
+
+#resultBtn {
+  width:155px;
+}
+
+#calc-history {
+  margin-top:40px;
+  text-align:center;
+  width:80%;
+  
+  
+  li {
+    display:inline;
+    margin:20px;
+  }
+
+  .calculation, .outcome {
+    padding:20px;
+    font-weight:bold;
+    border-radius:15px;
+    background:gray;
+  }
+  
+  .connection {
+  }
+}
