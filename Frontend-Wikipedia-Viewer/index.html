@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+
+	<title>Wikipedia Viewer | FreeCodeCamp's Frontend Certification</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+
+	<!-- Stylesheets -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Special+Elite|Francois+One' rel='stylesheet' type='text/css'>
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+	
+	<!-- Scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+	<script src="js/app.js"></script>
+
+</head>
+	
+<body>
+
+<div class="container" ng-app="myWV">
+
+  <div id="heading">A Wikipedia Viewer</div>
+  
+  <div id="main" ng-controller="ControllerMain">
+    
+    <div id="info">
+      <div ng-model="infoText">Search Wikipedia or proceed to a random article</div>
+    <!-- /info --></div>
+    
+    <div id="searchNdRandom">  
+      <input ng-model="srchTrm" ng-change="submitSearch()" type="text" placeholder="Search Wikipedia" />
+      <a id="random" class="fa fa-random" href="https://en.wikipedia.org/wiki/Special:Random" title="Proceed to Random Wikipedia Article" target="blank"></a>
+    <!-- /searchNdRandom --></div>
+    
+    <div id="searchResults">
+      <div class="searchResult fade" title="Click to read article at Wikipedia" ng-repeat="item in rsltTtls" ng-click="changeLocation(rsltLnks[$index])" class="slide">
+        <h1>{{item}}</h1>
+        <p>{{rsltDscrp[$index]}}</p>
+      </div>
+    <!-- /searchResults --></div>
+
+  <!-- /main --></div>
+
+<!-- /container --></div>
+	
+</body>
+</html>
