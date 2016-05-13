@@ -1,0 +1,17 @@
+body {
+	margin-top:20px;
+}
+
+.panel-body {
+	line-height:30px;
+	font-size:18px;
+}
+
+#current-weather {
+	line-height:40px;
+	font-size:18px;
+}
+
+.panel-footer img {
+	max-width:90px;
+}
