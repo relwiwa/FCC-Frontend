@@ -43,7 +43,7 @@
 			</div>
 			
 			<div class="panel-body text-center">
-				<div ng-if="!data.current.temperatureC && data.geoLocSupport && !data.manual.ongoingQuery" class="row">
+				<div ng-if="!data.current.temperatureC && data.automaticSupport && !data.manual.ongoingQuery && !data.manual.notFound" class="row">
 					<div class="col col-xs-12">
 						<p><i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i></p>
 						<p>Figuring out where you are at and what's the weather like there</p>
@@ -55,9 +55,9 @@
 						<p>Fetching weather data for {{data.manual.userInput}}</p>
 					</div>
 				</div>
-				<div ng-if="!data.geoLocSupport && !data.current.temperatureC && !data.manual.notFound && !data.manual.ongoingQuery" class="row">
+				<div ng-if="!data.automaticSupport && !data.current.temperatureC && !data.manual.notFound && !data.manual.ongoingQuery" class="row">
 					<div class="col col-xs-12">
-						<p>Unfortunately, we couldn't figure out your position automatically. Please enable geolocation support in your browser or manually enter a location.</p>
+						<p>Unfortunately, we couldn't figure out your position automatically. Please enable automatication support in your browser or manually enter a location.</p>
 					</div>
 				</div>
 				<div ng-if="data.manual.notFound" class="row">
@@ -75,9 +75,9 @@
 			<div id="current-weather" ng-if="data.current.temperatureC" class="panel-body text-center">
 				<div class="row">
 					<div class="col col-xs-12 col-sm-4"><img ng-src="{{data.current.icon}}"></div>
-					<div ng-if="data.current.tempScale === 'C'" class="col col-xs-12 col-sm-4">{{data.current.temperatureC}} <a href='#' ng-click="data.current.tempScale = 'F'">°C</a></div>
-					<div ng-if="data.current.tempScale === 'F'" class="col col-xs-12 col-sm-4">{{data.current.temperatureF}} <a href='#' ng-click="data.current.tempScale = 'C'">°F</a></div>
-					<div class="col col-xs-12 col-sm-4">{{data.current.weather}}</div>
+					<div ng-if="data.tempScale === 'C'" class="col col-xs-12 col-sm-4">{{data.current.temperatureC}} <a href='#' ng-click="data.tempScale = 'F'">°C</a></div>
+					<div ng-if="data.tempScale === 'F'" class="col col-xs-12 col-sm-4">{{data.current.temperatureF}} <a href='#' ng-click="data.tempScale = 'C'">°F</a></div>
+					<div class="col col-xs-12 col-sm-4">{{data.current.description}}</div>
 				</div>
 			</div>
 			
