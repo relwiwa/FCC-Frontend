@@ -41,25 +41,43 @@ angular.module("localWeather").controller("CurrentConditionsCtrl", ["locationSvc
 		- if user's location is retrieved, gets current weather conditions
 			via forecastSvc.getCurrentConditions and puts results into
 			vm.current.xxx, thus updating view
-		- if no user-data is retrieved, sets vm.geoLocSupport to false,
-			prompting user in view to manually enter location */
+		- if geolocation is not supported, autoip feature of weather
+			underground api is used instead
+		- if neither geolocation nor autoip workout, vm.geoLocSupport is 		set to false, prompting user in view to manually enter location */
 	vm.automaticQuery = function() {
-		locationSvc.geoLocation.getPosition().then(function(result) {
-			vm.current.position.coords = result.coords;
-			forecastSvc.getCurrentConditions(vm.current.position).then(
-				function(result) {
-					vm.current.conditions = result;
-					vm.current.place = vm.current.conditions.data.current_observation.display_location.full;
-					vm.current.temperatureC = vm.current.conditions.data.current_observation.temp_c;
-					vm.current.temperatureF = vm.current.conditions.data.current_observation.temp_f;
-					vm.current.weather = vm.current.conditions.data.current_observation.weather;
-					vm.current.icon = vm.current.conditions.data.current_observation.icon_url;
-				}
-			)
-		},
-    function(error) {
-			vm.geoLocSupport = false;
-		}); 
+		locationSvc.geoLocation.getPosition().then(
+			// use position from geolocation
+			function(result) {
+				vm.current.position.coords = result.coords;
+				forecastSvc.getCurrentConditions(vm.current.position).then(
+					function(result) {
+						vm.current.conditions = result;
+						vm.current.place = vm.current.conditions.data.current_observation.display_location.full;
+						vm.current.temperatureC = vm.current.conditions.data.current_observation.temp_c;
+						vm.current.temperatureF = vm.current.conditions.data.current_observation.temp_f;
+						vm.current.weather = vm.current.conditions.data.current_observation.weather;
+						vm.current.icon = vm.current.conditions.data.current_observation.icon_url;
+					}
+				)
+			},
+			// use autoip feature of weather underground api
+			function(error) {
+				forecastSvc.getCurrentConditions("autoip").then(
+					function(result) {
+						vm.current.conditions = result;
+						vm.current.place = vm.current.conditions.data.current_observation.display_location.full;
+						vm.current.temperatureC = vm.current.conditions.data.current_observation.temp_c;
+						vm.current.temperatureF = vm.current.conditions.data.current_observation.temp_f;
+						vm.current.weather = vm.current.conditions.data.current_observation.weather;
+						vm.current.icon = vm.current.conditions.data.current_observation.icon_url;
+					},
+					// prompt user to manually enter location
+					function(error) {
+						vm.geoLocSupport = false;
+					}
+				)
+			}
+		); 
 	};
 	
 	/* manualQuery Function

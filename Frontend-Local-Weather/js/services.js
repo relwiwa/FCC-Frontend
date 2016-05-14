@@ -102,7 +102,7 @@ angular.module("localWeather").service("forecastSvc", ["$q", "$http", function($
 				);
 			});
 		}
-		// query via manual input or zwm-id
+		// query via manual input, zwm-id or autoip feature
 		else {
 			return $q(function(resolve, reject) {
 				$http.get("http://api.wunderground.com/api/" + key + "/conditions/lang:EN/q/" + input + ".json").then(
