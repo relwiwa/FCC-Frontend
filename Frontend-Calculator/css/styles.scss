@@ -1,11 +1,15 @@
-$colorA: #000000;
-$colorB: blue;
+$colorText: #4f6457;
+$colorButtons: #acd0c0;
+$colorDisplay: #d9b44a;
+$colorBorders: $colorText;
+$colorHighlight: $colorDisplay;
+$colorBackground: #75b1a9;
 
 body {
   /* Background pattern from subtlepatterns.com */
   background:url(http://res.cloudinary.com/dqzrtsqol/image/upload/v1455183557/ignasi_pattern_s_yy4zmt.png);
+	color:$colorText;
 }
-
 
 h1 {
   text-align:center;  
@@ -13,65 +17,60 @@ h1 {
   margin-bottom:50px;
 }
 
-#calculator {
-  border-radius:10px;
-  width:355px;
-  margin:0 auto;
-  background:gray;
-	border:1px solid $colorA;
+.container {
+  max-width:550px;
 }
 
+.row {
+	margin:10px 0;
+}
 
-#calcHead, #calcBody {
-  padding:10px;
+.col-xs-3, .col-xs-6 {
+	padding-left:5px;
+	padding-right:5px;
+}
+
+#calculator {
+  border-radius:10px;
+  margin:0 auto;
+  background:$colorBackground;
+	border:1px solid $colorBorders;
 }
 
 #display {
-  padding:20px;
+	background:$colorDisplay;
   border-radius:5px;
   font-weight:bold;
-  width:275px;
-  margin:10px;
+	font-size:22px;
+	height:70px;
+  width:100%;
   text-align:right;
-	border:1px solid $colorA;
+	border:1px solid $colorBorders;
 }
 
 button {
-  padding:15px;
-  width:70px;
-  margin:5px;
+	background:$colorButtons;
+  width:100%;
+	height:50px;
   font-weight:bold;
   border-radius:10px;
-  border:1px solid $colorA;
+  border:1px solid $colorBorders;
   outline:0;
 }
 
 button:hover, button:active {
-  border:1px solid $colorB;
+  border:1px solid $colorHighlight;
 }
 
 #resultBtn {
-  width:155px;
+  width:100%;
 }
 
-#calc-history {
-  margin-top:40px;
-  text-align:center;
-  width:80%;
-  
-  
-  li {
-    display:inline;
-    margin:20px;
-  }
+@media (min-width:400px) {
 
-  .calculation, .outcome {
-    padding:20px;
-    font-weight:bold;
-    border-radius:15px;
-    background:gray;
-  }
-  
-  .connection {
-  }
+	.col-xs-3, .col-xs-6 {
+		padding-left:15px;
+		padding-right:15px;
+	}
+	
 }
