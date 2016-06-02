@@ -53,14 +53,6 @@ $(document).ready(function() {
 		}
 	}
 
-	/*myCalc.addHstry = function() {
-		myCalc.prevCalc.push({
-			"calc": myCalc.trimmedCalc,
-			"result": myCalc.currentResult
-		});
-		$("#calc-history").append("<li><span class='calculation'>" + myCalc.trimmedCalc + "</span><span class='connection'>=<span class='outcome'>" + myCalc.currentResult + "</span></li>");
-	}*/
-
 	/* Determines, whether at the end of item there is no, one or two operators */
 	myCalc.chkOps = function(item) {
 		var result = 0;
