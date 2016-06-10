@@ -1,0 +1,77 @@
+/* Mobile first-styles */
+
+.btn {
+	margin-bottom:5px;
+}
+
+.btn-active {
+	background:lightgray;
+}
+
+.page-header {
+	margin-top:10px;
+	margin-bottom:30px;
+}
+
+#play {
+	display:none;
+}
+
+#ttt-game {
+	display:none;
+}
+
+#ttt-header {
+	font-size:18px;
+}
+
+#ttt-field .col-xs-4 {
+	padding:5px;
+}
+
+.x-o div {
+	width:100%;
+	padding-bottom:100%;
+	position:relative;
+	background:white;
+	border:1px solid lightgray;
+	webkit-border-radius:5px;
+	moz-border-radius:5px;
+	o-border-radius:5px;
+	border-radius:5px;
+}
+
+.x-o span {
+	position:absolute;
+	top:50%;
+	left:50%;
+	font-size:28px;
+	webkit-transform:translate(-50%, -50%);
+	moz-transform:translate(-50%, -50%);
+	o-transform:translate(-50%, -50%);
+	transform:translate(-50%, -50%);
+}
+
+#ttt-result {
+	display:none;
+	margin-bottom:30px;
+}
+
+#credits {
+	margin-top:50px;
+}
+
+
+/* Media Queries */
+
+@media (min-width:500px) {
+
+	#ttt-header {
+		font-size:28px;
+	}
+
+	#ttt-field .col-xs-4 {
+		padding:15px;
+	}
+	
+}
