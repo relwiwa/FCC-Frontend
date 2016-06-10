@@ -4,6 +4,10 @@
 	margin-bottom:5px;
 }
 
+.btn-active {
+	background:lightgray;
+}
+
 .page-header {
 	margin-top:10px;
 	margin-bottom:30px;
@@ -57,7 +61,8 @@
 	margin-top:50px;
 }
 
-/* Styles for displays >= 768px, that is Bootstrap's col-sm */
+
+/* Media Queries */
 
 @media (min-width:500px) {
 
