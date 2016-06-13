@@ -179,7 +179,7 @@
 			}
 			else {
 				var divs = $(".x-o");
-				for (var i = 0; i < 3; i++) {
+				for (var i = 0; i < rslt.cells.length; i++) {
 					divs.eq(rslt.cells[i]).addClass("text-primary");
 				}
 				if (rslt.winner === "computer") {

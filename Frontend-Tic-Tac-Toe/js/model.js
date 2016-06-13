@@ -83,15 +83,17 @@
 		
 		/* isGameOver function:
 			- checks whether the game is over
-			- check only takes places when more than 2 cells have been played
+			- check only takes place when more than 2 cells have been played
 			- runs through currentState
-			- returns object with gameOver property and/or winner and cells property */
+			- returns object with gameOver property and/or winner and cells property
+			- also checks for a win via multiple rows */
 		isGameOver: function() {
+			var result = {};
+			result.cells = [];
+			result.gameOver = false;
+			
 			if (this.emptyCells.length >= 8) {
 				console.log("less than 2 entries, no check necessary");
-				return {
-					gameOver: false
-				};
 			}
 			else {
 				var tds = this.currentState;
@@ -101,11 +103,9 @@
 						console.log("checking row " + i/3);
 						if (tds[i] === tds[i + 1] && tds[i + 1] === tds[i + 2]) {
 							console.log("row win");
-							return {
-								gameOver: true,
-								winner: this.turn,
-								cells: [i, i + 1, i + 2]
-							};
+							result.gameOver = true;
+							result.winner = this.turn;
+							result.cells.push(i, i + 1, i + 2);
 						}
 						else {
 							console.log("no final state in row: " + (i/3));
@@ -120,11 +120,9 @@
 						console.log("checking col " + i/3);
 						if (tds[i/3] === tds[i/3 + 3] && tds[i/3 + 3] === tds[i/3 + 6]) {
 							console.log("col win");
-							return {
-								gameOver: true,
-								winner: this.turn,
-								cells: [i/3, i/3 + 3, i/3 + 6]
-							};
+							result.gameOver = true;
+							result.winner = this.turn;
+							result.cells.push(i/3, i/3 + 3, i/3 + 6);
 						}
 						else {
 							console.log("no final state in col: " + i/3);
@@ -139,38 +137,29 @@
 				if (tds[0] !== "") {
 					if (tds[0] === tds[4] && tds[4] === tds[8]) {
 						console.log("diagonal 0 4 8 wins");
-						return {
-							gameOver: true,
-							winner: this.turn,
-							cells: [0, 4, 8]
-						};
+						result.gameOver = true,
+						result.winner = this.turn;
+						result.cells.push(0, 4, 8);
 					}
 				}
 
 				if (tds[2] !== "") {
 					if (tds[2] === tds[4] && tds[4] === tds[6]) {
 						console.log("diagonal 2 4 6 wins");
-						return {
-							gameOver: true,
-							winner: this.turn,
-							cells: [2, 4, 6]
-						};
+						result.gameOver = true,
+						result.winner = this.turn;
+						result.cells.push(2, 4, 6);
 					}
 				}
 
-				if (this.emptyCells.length === 0) {
+				if (this.emptyCells.length === 0 && result.gameOver === false) {
 					console.log("its a tie");
-					return {
-						gameOver: true,
-						winner: "tie"
-					}
+					result.gameOver = true;
+					result.winner = "tie";
 				}
-				
-				console.log("no winner yet");
-				return {
-					gameOver: false
-				};
 			}
+			console.log(result);
+			return result;
 		}
 
 	}; // end myTTT.M
