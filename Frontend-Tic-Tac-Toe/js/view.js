@@ -156,6 +156,7 @@
 			
 			$("#play-again").click(function() {
 				$("#play-again").off();
+				$("#change-options").off();
 				myTTT.C.startGame();
 			});
 
