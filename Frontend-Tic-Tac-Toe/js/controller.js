@@ -80,7 +80,7 @@
 		handleHumanMove: function(move) {
 			myTTT.V.suspendHumanAction(myTTT.M.emptyCells);
 			myTTT.M.currentState[move] = myTTT.M.human.avatar;
-			myTTT.M.emptyCells.splice(myTTT.M.emptyCells.indexOf(move), 1);
+			myTTT.M.emptyCells.splice($.inArray(move, myTTT.M.emptyCells), 1);
 			myTTT.V.showMove("human", move);
 			var rslt = myTTT.M.isGameOver();
 			if (rslt.gameOver === false) {
