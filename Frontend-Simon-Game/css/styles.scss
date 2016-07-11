@@ -1,0 +1,133 @@
+/* Colors */
+
+$borderColor:							lightgray;
+$centerColor:							darkgray;
+$topLeftColor:						seagreen;
+$topLeftActiveColor:			aquamarine;
+$topRightColor:						firebrick;
+$topRightActiveColor:			lightcoral;
+$bottomLeftColor:					gold;
+$bottomLeftActiveColor:		lightyellow;
+$bottomRightColor:				dodgerblue;
+$bottomRightActiveColor:	paleturquoise;
+
+/* Mixins */
+
+/* setup-simon Mixin:
+	- Creates all the repetitive classes for the four fields of game
+	- border and border-radius are set as defined by $vertical/$horizontal
+	- colors are set for both states
+	- animation is created for each field
+	- static tapped class is also created */
+@mixin setup-simon($vertical, $horizontal, $color, $colorActive) {
+	
+	#simon-#{$vertical}-#{$horizontal} {
+		@if $vertical == "top" {
+			padding-bottom: 5px;
+		}
+		@else {
+			padding-top: 5px;
+		}
+
+		@if $horizontal == "left" {
+			padding-right: 5px;
+		}
+		@else {
+			padding-left: 5px;
+		}
+
+	}
+	
+	#simon-#{$vertical}-#{$horizontal} div {
+		-webkit-border-#{$vertical}-#{$horizontal}-radius: 100%;
+		-moz-border-#{$vertical}-#{$horizontal}-radius: 100%;
+		-o-border-#{$vertical}-#{$horizontal}-radius: 100%;
+		border-#{$vertical}-#{$horizontal}-radius: 100%;
+		background: $color;
+		border-#{$vertical}: 4% solid $borderColor;
+		border-#{$horizontal}: 4% solid $borderColor;
+	}
+
+	#simon-#{$vertical}-#{$horizontal} div.active {
+		animation-name:activate-#{$vertical}-#{$horizontal};
+		animation-duration:1s;
+	}
+
+	#simon-#{$vertical}-#{$horizontal} div.tapped {
+		background-color:$colorActive;
+	}
+
+
+	@keyframes activate-#{$vertical}-#{$horizontal} {
+		0% { background-color:$color; }
+		50% { background-color:$colorActive; }
+		100% { backgroundColor:$color; }
+	}
+
+}
+
+/**********************************************/
+
+@include setup-simon("top", "left", $topLeftColor, $topLeftActiveColor);
+@include setup-simon("top", "right", $topRightColor, $topRightActiveColor);
+@include setup-simon("bottom", "left", $bottomLeftColor, $bottomLeftActiveColor);
+@include setup-simon("bottom", "right", $bottomRightColor, $bottomRightActiveColor);
+
+.container {
+	max-width:700px;
+}
+
+#simon-game {
+	border-radius:100%;
+	position:relative;
+}
+
+#simon-fields {
+	border:10px solid $borderColor;
+	background:$borderColor;
+	border-radius:100%;
+	z-index:0;
+}
+
+.simon-field {
+	padding-right:0;
+	padding-left:0;
+	box-sizing:border-box;
+}
+
+.simon-field div {
+	width:100%;
+	padding-bottom:100%;
+}
+
+#simon-center {
+	position:absolute;
+	top:25%;
+	left:21%;
+	z-index:5;
+	background:$centerColor;
+	border-radius:100%;
+}
+
+#simon-options {
+	border-radius:100%;
+	padding:0;
+	border:10px solid $borderColor;
+}
+
+#simon-options div {
+	padding-bottom:100%;
+	background:$centerColor;
+	border-radius:100%;
+	position:relative;
+}
+
+#simon-options div h3 {
+	position:absolute;
+	text-align:center;
+	width:100%;
+}
+
+#credits {
+	margin-top:40px;
+}
