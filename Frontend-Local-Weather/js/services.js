@@ -122,7 +122,7 @@ angular.module("localWeather").service("forecastSvc", ["$q", "$http", function($
 			output.temperatureC = output.conditions.temp_c;
 			output.temperatureF = output.conditions.temp_f;
 			output.description = output.conditions.weather;
-			output.icon = output.conditions.icon_url;
+			output.icon = output.conditions.icon_url.replace('http://', 'https://');
 
 			return output;
 		};
@@ -142,7 +142,7 @@ angular.module("localWeather").service("forecastSvc", ["$q", "$http", function($
 			
 			return $q(function(resolve, reject) {
 				
-				$http.get("http://api.wunderground.com/api/" + key + "/conditions/lang:EN/q/" + query + ".json").then(
+				$http.get("https://api.wunderground.com/api/" + key + "/conditions/lang:EN/q/" + query + ".json").then(
 					
 					// api request worked without error
 					function(result) {
